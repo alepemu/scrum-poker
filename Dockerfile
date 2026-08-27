@@ -2,7 +2,10 @@
 
 # ---- build ----------------------------------------------------------------
 FROM node:22-alpine AS build
-RUN corepack enable
+# pnpm is installed directly rather than through corepack: corepack's download
+# prompt and signature check are a common cause of container build failures.
+# The version matches the packageManager field, so pnpm does not re-switch.
+RUN npm install -g pnpm@10.26.1
 WORKDIR /src
 
 # Manifests first: a source-only change then reuses the install layer.
