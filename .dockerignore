@@ -1,0 +1,13 @@
+.git
+node_modules
+**/node_modules
+**/dist
+
+# Tests, tooling and design assets: none of it is in the image.
+e2e
+playwright.config.ts
+playwright-report
+test-results
+design
+.claude
+*.md
