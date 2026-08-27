@@ -1,3 +1,4 @@
+import { AuroraBackdrop } from '../../components/ui/AuroraBackdrop';
 import { SpadeIcon } from '../../components/ui/icons';
 import { useRoomList } from '../../hooks/useRoomList';
 import { NameBadge } from '../identity/NameBadge';
@@ -9,6 +10,7 @@ export function LobbyPage() {
 
   return (
     <div className="relative min-h-dvh bg-surface">
+      <AuroraBackdrop />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 dot-grid" />
 
       <div className="relative mx-auto w-full max-w-3xl px-4 py-4 sm:px-6 sm:py-20">

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
 import type { RoomSettings, RoomState, VoteCard } from '@poker/shared';
+import { AuroraBackdrop } from '../../components/ui/AuroraBackdrop';
 import { Button } from '../../components/ui/Button';
 import { CopyButton } from '../../components/ui/CopyButton';
 import { SettingsIcon, SpadeIcon } from '../../components/ui/icons';
@@ -55,6 +56,7 @@ export function RoomView({
 
   return (
     <div className="relative grid h-dvh grid-rows-[auto_1fr_auto] overflow-hidden bg-surface room-shell">
+      <AuroraBackdrop />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 dot-grid" />
 
       <header className="relative flex items-center justify-between gap-3 border-b border-line-soft px-4 py-3 sm:h-19 sm:px-8 sm:py-0">
