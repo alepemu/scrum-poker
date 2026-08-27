@@ -11,7 +11,7 @@ export function LobbyPage() {
     <div className="relative min-h-dvh bg-surface">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 dot-grid" />
 
-      <div className="relative mx-auto w-full max-w-3xl px-4 py-6 sm:px-6 sm:py-20">
+      <div className="relative mx-auto w-full max-w-3xl px-4 py-4 sm:px-6 sm:py-20">
         <header className="mb-10 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <span
