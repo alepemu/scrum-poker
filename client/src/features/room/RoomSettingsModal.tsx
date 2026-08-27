@@ -10,6 +10,7 @@ import {
   type VoteCard,
 } from '@poker/shared';
 import { Button } from '../../components/ui/Button';
+import { CheckIcon } from '../../components/ui/icons';
 import { Modal } from '../../components/ui/Modal';
 import { TextField } from '../../components/ui/TextField';
 import { cn } from '../../lib/cn';
@@ -66,7 +67,9 @@ export function RoomSettingsModal({
         />
 
         <fieldset className="mt-5" disabled={deckLocked}>
-          <legend className="mb-2 font-mono text-nano tracking-[0.06em] text-ink-muted uppercase">
+          {/* Matches the TextField label exactly: a legend is neither block nor
+              free of the browser's own inline padding. */}
+          <legend className="mb-2 block p-0 font-mono text-nano tracking-[0.06em] text-ink-muted uppercase">
             Cards
           </legend>
 
@@ -105,16 +108,43 @@ export function RoomSettingsModal({
           </p>
         </fieldset>
 
-        <label className="mt-5 flex cursor-pointer items-center gap-2.5">
+        <label
+          className={cn(
+            'mt-5 flex cursor-pointer items-start gap-3 rounded-control border border-line',
+            'bg-surface-raised p-3.5 hover:border-ink-muted',
+            'motion-safe:transition-colors motion-safe:duration-200',
+          )}
+        >
+          {/* The native control cannot take the field styling, so it is hidden
+              and the box beside it is drawn from the same tokens. */}
           <input
             type="checkbox"
             checked={!draft.animations}
             onChange={(event) =>
               setDraft((current) => ({ ...current, animations: !event.target.checked }))
             }
-            className="size-4 shrink-0 accent-accent-500"
+            className="peer sr-only"
           />
-          <span className="text-body text-ink">Disable celebrations</span>
+
+          <span
+            className={cn(
+              'grid size-5 shrink-0 place-items-center rounded-check border border-line',
+              'bg-surface-sunken text-transparent',
+              'peer-checked:border-accent-500 peer-checked:bg-accent-500 peer-checked:text-white',
+              'peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2',
+              'peer-focus-visible:outline-accent-400',
+              'motion-safe:transition-colors motion-safe:duration-150',
+            )}
+          >
+            <CheckIcon size={13} />
+          </span>
+
+          <span className="min-w-0">
+            <span className="block text-body text-ink">Disable celebrations</span>
+            <span className="mt-0.5 block text-meta text-ink-muted">
+              No animation when the table agrees or splits.
+            </span>
+          </span>
         </label>
 
         <div className="mt-7 flex gap-2.5">

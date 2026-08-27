@@ -65,6 +65,8 @@
   --radius-control: 8px;
   --radius-card: 14px;
   --radius-card-sm: 9px;
+  /* Small enough that the 20px checkbox reads square, not round. */
+  --radius-check: 5px;
   --radius-panel: 12px;
   --radius-pill: 999px;
 
