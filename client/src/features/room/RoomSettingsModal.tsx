@@ -111,7 +111,7 @@ export function RoomSettingsModal({
         <label
           className={cn(
             'mt-5 flex cursor-pointer items-start gap-3 rounded-control border border-line',
-            'bg-surface-raised p-3.5 hover:border-ink-muted',
+            'bg-surface-raised p-3.5 hover:border-accent-450',
             'motion-safe:transition-colors motion-safe:duration-200',
           )}
         >

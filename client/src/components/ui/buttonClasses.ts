@@ -12,9 +12,9 @@ export const buttonClasses = cva(
     variants: {
       variant: {
         primary: 'rounded-pill bg-accent-500 text-white shadow-pill hover:bg-accent-600',
-        secondary: 'rounded-control border border-line text-ink hover:border-ink-muted',
+        secondary: 'rounded-control border border-line text-ink hover:border-accent-450',
         /** The header's lozenges: a mono caps label in a hairline frame. */
-        mono: 'rounded-control border border-line font-mono text-ink-dim uppercase hover:border-ink-muted hover:text-ink',
+        mono: 'rounded-control border border-line font-mono text-ink-dim uppercase hover:border-accent-450 hover:text-ink',
         /** No frame at all — just the glyph, brightening on hover. */
         plain: 'rounded-control text-ink-muted hover:text-ink',
       },

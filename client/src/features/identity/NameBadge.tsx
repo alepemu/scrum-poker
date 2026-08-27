@@ -48,7 +48,7 @@ export function NameBadge({ className }: { className?: string }) {
         className={cn(
           'flex h-11 max-w-52 cursor-pointer items-center gap-2.5 rounded-control border border-line px-3.5',
           'text-meta text-ink',
-          'hover:border-ink-muted motion-safe:transition-colors motion-safe:duration-200',
+          'hover:border-accent-450 motion-safe:transition-colors motion-safe:duration-200',
           className,
         )}
       >
