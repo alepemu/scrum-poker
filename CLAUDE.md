@@ -39,7 +39,6 @@ pnpm workspaces, Node >= 22, ESM throughout.
 shared/   @poker/shared — wire protocol, card catalogue, vote summary. Imported by both sides.
 server/   domain/ pure room rules · store/ in-memory rooms · socket/ event handlers
 client/   features/lobby · features/room · features/identity · features/toast · components/ui
-design/   Claude Design canvas (canvas.json + *.dc.html artboards) for the screens
 e2e/      Playwright specs for what needs two browsers (see Tests below)
 ```
 
@@ -94,7 +93,6 @@ consistently.
   `validate.ts` and `roomStore.ts` for the register to match. Do not add comments that
   restate the code.
 - Prettier: single quotes, semicolons, trailing commas, 100 columns, tailwind class sorting.
-  `design/scrum-poker-screens.html` is prettier-ignored on purpose — it is generated.
 
 ### Client
 

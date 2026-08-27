@@ -88,7 +88,6 @@ shared/   wire protocol, the vote scale, vote summary  (imported by both sides)
 server/   domain/ pure room rules · store/ in-memory rooms · socket/ event handlers
 client/   features/lobby · features/room · features/identity · features/toast · components/ui
 e2e/      Playwright specs for what needs two browsers
-design/   the screens, as a Claude Design canvas
 ```
 
 Two rules hold the design together: `server/src/domain/` never touches I/O, and

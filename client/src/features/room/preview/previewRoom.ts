@@ -8,9 +8,9 @@ import {
 } from '@poker/shared';
 
 /**
- * TEMPORARY (celebration placement study). Builds a mannequin room so the ring
- * can be seen at any headcount without a server, a second browser, or anyone
- * else voting. Delete with the rest of preview/.
+ * Builds a mannequin room so the ring can be seen at any headcount without a
+ * server, a second browser, or anyone else voting. Reached at /preview, which
+ * the lobby no longer links to — it is how table layout gets checked.
  */
 
 export const PREVIEW_VIEWER_ID = 'preview-you';
