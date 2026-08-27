@@ -1,0 +1,41 @@
+{
+  "name": "poker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Scrum Poker — lightweight planning poker for a team",
+  "packageManager": "pnpm@10.26.1",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,magenta \"pnpm dev:server\" \"pnpm dev:client\"",
+    "dev:server": "pnpm --filter @poker/server dev",
+    "dev:client": "pnpm --filter @poker/client dev",
+    "build": "pnpm --filter @poker/client build && pnpm --filter @poker/server build",
+    "start": "pnpm --filter @poker/server start",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "e2e": "playwright test",
+    "e2e:ui": "playwright test --ui",
+    "typecheck": "pnpm -r typecheck && tsc --noEmit -p e2e/tsconfig.json",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^22.10.7",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.18.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.10",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.21.0",
+    "vitest": "^3.0.4"
+  }
+}

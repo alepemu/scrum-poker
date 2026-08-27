@@ -1,0 +1,9 @@
+packages:
+  - shared
+  - server
+  - client
+
+# pnpm 10 does not run dependency install scripts unless they are listed here.
+# esbuild backs both tsup and vite, so without it neither side builds.
+onlyBuiltDependencies:
+  - esbuild

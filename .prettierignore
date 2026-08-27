@@ -1,0 +1,6 @@
+dist/
+node_modules/
+pnpm-lock.yaml
+
+# Seeded canvas payload: machine-generated, must not be reformatted
+design/scrum-poker-screens.html
