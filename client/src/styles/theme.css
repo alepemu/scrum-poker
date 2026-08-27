@@ -179,14 +179,20 @@
  */
 @utility room-shell {
   /*
-   * Sized from height, then capped by width. Height alone put a 420px table on
-   * a 390px phone, which pushed the whole ring off-screen and starved the side
-   * seats. The subtraction reserves a seat either side plus the gaps around
-   * them; below roughly 700px wide the cap binds, above it the clamp still
-   * wins, so nothing about desktop or tablet moves.
+   * The felt is sized from width first, then given a height floor, so the
+   * 2.26 oval is a desktop shape rather than a rule. Deriving height from
+   * width on a phone made an 81px table, and the two labels and the button
+   * inside it need 96px before any margin off the rim — so the table gets
+   * rounder on a narrow screen instead of shorter.
+   *
+   * --table-max-w reserves a seat either side plus the gaps around them. It
+   * only binds below roughly 700px wide; above that the clamp still wins and
+   * nothing about desktop or tablet moves.
    */
-  --table-h: min(clamp(150px, 22vh, 230px), calc((100vw - 2 * 58px - 6 * 10px) / 2.26));
-  --table-w: calc(var(--table-h) * 2.26);
+  --table-min-h: 140px;
+  --table-max-w: calc(100vw - 2 * 58px - 6 * 10px);
+  --table-w: min(calc(clamp(150px, 22vh, 230px) * 2.26), var(--table-max-w));
+  --table-h: max(var(--table-min-h), calc(var(--table-w) / 2.26));
 }
 
 @utility seat-scale {
