@@ -2,7 +2,6 @@ import { SpadeIcon } from '../../components/ui/icons';
 import { useRoomList } from '../../hooks/useRoomList';
 import { NameBadge } from '../identity/NameBadge';
 import { CreateRoomForm } from './CreateRoomForm';
-import { ExampleRoom } from './ExampleRoom';
 import { RoomList } from './RoomList';
 
 export function LobbyPage() {
@@ -12,14 +11,14 @@ export function LobbyPage() {
     <div className="relative min-h-dvh bg-surface">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 dot-grid" />
 
-      <div className="relative mx-auto w-full max-w-3xl px-4 py-12 sm:px-6 sm:py-20">
+      <div className="relative mx-auto w-full max-w-3xl px-4 py-6 sm:px-6 sm:py-20">
         <header className="mb-10 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <span
               aria-hidden="true"
-              className="grid size-10 shrink-0 place-items-center rounded-card-sm bg-accent-500 text-white"
+              className="grid size-12 shrink-0 place-items-center rounded-card-sm bg-accent-500 text-white"
             >
-              <SpadeIcon size={20} />
+              <SpadeIcon size={32} />
             </span>
             <div>
               <h1 className="text-value font-black tracking-[-0.03em] text-ink">Scrum Poker</h1>
@@ -45,15 +44,6 @@ export function LobbyPage() {
           ) : null}
 
           <RoomList rooms={rooms} loading={loading} />
-        </section>
-
-        {/* Kept out of the list above so a pretend room never sits among real ones. */}
-        <section className="mt-10">
-          <h2 className="mb-3.5 font-mono text-micro text-ink-muted uppercase">Example room</h2>
-
-          <div className="grid gap-3 sm:grid-cols-2">
-            <ExampleRoom />
-          </div>
         </section>
       </div>
     </div>

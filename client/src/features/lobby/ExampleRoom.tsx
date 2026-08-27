@@ -4,6 +4,10 @@ import { cn } from '../../lib/cn';
 /**
  * A permanent, self-contained table anyone can poke at — nobody else is in it,
  * so it is somewhere to see how a round works without disturbing a real room.
+ *
+ * Deliberately not rendered anywhere: the lobby no longer advertises `/preview`,
+ * so the route is reachable only by someone who already knows the URL. Kept
+ * here so putting the card back is one import.
  */
 export function ExampleRoom({ className }: { className?: string }) {
   return (
