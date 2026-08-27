@@ -66,7 +66,7 @@ export function RoomView({
             title="Home"
             className="grid size-8 shrink-0 place-items-center rounded-card-sm bg-accent-500 text-white sm:size-9"
           >
-            <SpadeIcon size={16} />
+            <SpadeIcon size={22} />
           </Link>
 
           <div className="flex min-w-0 flex-col">
