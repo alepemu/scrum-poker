@@ -43,9 +43,10 @@ design/   Claude Design canvas (canvas.json + *.dc.html artboards) for the scree
 e2e/      Playwright specs for what needs two browsers (see Tests below)
 ```
 
-Deployed as a single container to Fly.io — `Dockerfile`, `fly.toml`, and a Deploying
-section in the README. One machine, scale-to-zero off: rooms are in memory, so a restart
-empties every table and a second instance would be a second disconnected set of rooms.
+Deployed as a single container to Render's free tier — `Dockerfile`, `render.yaml`, and a
+Deploying section in the README. One instance, and it sleeps when idle: rooms are in memory,
+so a restart empties every table and a second instance would be a second disconnected set of
+rooms. There is no authentication in front of it.
 
 ## Architecture rules
 

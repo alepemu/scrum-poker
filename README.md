@@ -39,28 +39,33 @@ Behind a reverse proxy, pass the WebSocket upgrade headers through to the app.
 
 ## Deploying
 
-The whole app is one container: the server serves the built client from the same origin, so
-there is nothing to host separately.
+Hosted on Render's free tier as a single container — the server serves the built client from
+the same origin, so there is nothing to deploy separately. `render.yaml` describes the
+service; Render builds the `Dockerfile` and redeploys on every push to `main`.
 
-```bash
-fly deploy
-```
+**The service sleeps after 15 minutes without traffic.** The next visitor wakes it, which
+takes about a minute, and every open room is gone by then. That is survivable here because
+rooms are disposable anyway — start a round by creating a room, not by expecting yesterday's
+to still be there.
 
-`fly.toml` keeps **one** machine running and scale-to-zero switched off, on purpose. Rooms
-live in memory in the server process, so a stopped or restarted machine loses every open
-room — that includes every deploy. Estimate between deploys, not during one.
+The free plan allows 750 instance-hours a month per workspace, which is roughly one service
+running continuously. An external uptime pinger every ten minutes would therefore keep it
+awake and still fit inside the allowance, at the cost of spending all of it on this one
+service. Not set up, but it is the lever if the cold starts get annoying.
 
-For the same reason the app cannot be scaled past one machine as it stands. Two instances
-would mean two disconnected sets of rooms; running more than one needs the socket.io Redis
-adapter and a shared room store first.
+**There is no authentication.** Anyone who opens the URL sees every room and can join any of
+them. The only thing protecting it is that the address is not published. Keep the GitHub
+repo private, and do not put anything in a room name you would not want read aloud.
 
-There is no authentication: anyone who reaches the app sees the full room list and can join
-any room. Put the deployment behind Cloudflare Access (or an equivalent) rather than relying
-on the URL being hard to guess. Note that the `*.fly.dev` hostname stays reachable even once
-Access covers your custom domain — close it by running `cloudflared` inside the machine and
-releasing the public IPs, so Cloudflare is the only route in.
+Two limits worth knowing before changing any of this:
 
-The checks in `fly.toml` use `/healthz`, which reports the live room count.
+- Rooms live in memory in the server process, so a restart — including every deploy — empties
+  every table.
+- For the same reason the app cannot run on more than one instance. Two would mean two
+  disconnected sets of rooms; scaling out needs the socket.io Redis adapter and a shared room
+  store first.
+
+The health check uses `/healthz`, which reports the live room count.
 
 ## Checks
 
