@@ -37,7 +37,7 @@ export function VotePicker({ deck, selected, disabled, onSelect }: VotePickerPro
                 'grid h-14 cursor-pointer place-items-center rounded-panel sm:h-21 sm:flex-1',
                 // Type size stays out of the selected/unselected branches: only
                 // colour marks the choice, so nothing about the card resizes.
-                'text-title font-extrabold tracking-[-0.03em] sm:text-display',
+                'text-title font-extrabold tracking-[-0.03em] lg:text-display',
                 'motion-safe:transition-[background-color,border-color,color,box-shadow] motion-safe:duration-150',
                 'disabled:cursor-not-allowed disabled:opacity-40',
                 isSelected

@@ -127,7 +127,7 @@ function TableTop({
       className={cn(
         'relative col-start-2 row-start-2 flex flex-col items-center justify-center',
         'h-(--table-h) w-(--table-w) max-w-full rounded-pill table-felt',
-        'gap-[clamp(10px,2cqh,16px)] px-6',
+        'gap-[clamp(10px,2cqh,16px)] px-4 sm:px-6',
       )}
     >
       {celebration ? <RoundCelebration celebration={celebration} /> : null}
@@ -143,11 +143,11 @@ function TableTop({
         )}
       >
         {revealed ? (
-          <Button size="lg" onClick={onReset}>
+          <Button size="lg" className="px-5 sm:px-10" onClick={onReset}>
             New round
           </Button>
         ) : (
-          <Button size="lg" onClick={onReveal} disabled={disabled}>
+          <Button size="lg" className="px-5 sm:px-10" onClick={onReveal} disabled={disabled}>
             Reveal cards
           </Button>
         )}

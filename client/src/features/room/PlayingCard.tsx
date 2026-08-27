@@ -1,4 +1,5 @@
 import { cva } from 'class-variance-authority';
+import type { CSSProperties } from 'react';
 import { describeVote, formatVote, isSpecialCard, type VoteCard } from '@poker/shared';
 import { cn } from '../../lib/cn';
 
@@ -45,6 +46,15 @@ export function PlayingCard({
   const faceDown = hasVoted ? 'voted' : away ? 'away' : 'idle';
   const waiting = !hasVoted && !revealed;
 
+  const label = value === null ? '–' : formatVote(value);
+  /*
+   * How much of the card's height the numeral takes. A glyph carries no digits
+   * to size against, and "0,25" is nearly twice the width of "13", so both step
+   * down or they run into the card edge once the ring clamps the card.
+   */
+  const valueScale =
+    value !== null && isSpecialCard(value) ? 0.24 : label.length >= 4 ? 0.18 : 0.28;
+
   return (
     <div
       className={cn('relative h-(--card-h) w-(--card-w) shrink-0 card-scene', className)}
@@ -72,14 +82,11 @@ export function PlayingCard({
         </div>
 
         <div className={cn(face({ tone: value === null ? 'abstain' : 'value' }), 'card-face-back')}>
-          {/* A glyph carries no digits to size against, so it sits a little smaller. */}
           <span
-            className={cn(
-              'font-extrabold',
-              value !== null && isSpecialCard(value) ? 'text-display' : 'text-value',
-            )}
+            className="card-value font-extrabold"
+            style={{ '--value-scale': valueScale } as CSSProperties}
           >
-            {value === null ? '–' : formatVote(value)}
+            {label}
           </span>
         </div>
       </div>

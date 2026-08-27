@@ -178,7 +178,14 @@
  * can be sized to the felt while sitting outside it.
  */
 @utility room-shell {
-  --table-h: clamp(150px, 22vh, 230px);
+  /*
+   * Sized from height, then capped by width. Height alone put a 420px table on
+   * a 390px phone, which pushed the whole ring off-screen and starved the side
+   * seats. The subtraction reserves a seat either side plus the gaps around
+   * them; below roughly 700px wide the cap binds, above it the clamp still
+   * wins, so nothing about desktop or tablet moves.
+   */
+  --table-h: min(clamp(150px, 22vh, 230px), calc((100vw - 2 * 58px - 6 * 10px) / 2.26));
   --table-w: calc(var(--table-h) * 2.26);
 }
 
@@ -188,8 +195,16 @@
   /* A card plus the name line under it. */
   --name-block: 34px;
 
-  /* Width a seat may claim in the widest row: N cards and N-1 gaps. */
-  --w-row: calc((100cqw - (var(--row-seats, 3) - 1) * var(--seat-gap)) / var(--row-seats, 3));
+  /*
+   * Width a seat may claim in the widest row. The row sits in the middle column
+   * with a side seat either side of it, so the two of them and the two column
+   * gaps (1.4 x --seat-gap each) come off the top: N + 2 cards and N + 1.8 gaps
+   * across. Measuring only the row itself let the ring run 23px wider than a
+   * 360px phone.
+   */
+  --w-row: calc(
+    (100cqw - (var(--row-seats, 3) + 1.8) * var(--seat-gap)) / (var(--row-seats, 3) + 2)
+  );
   /* Width left for the side seats once the table has taken its share. */
   --w-mid: calc((100cqw - var(--table-w) - 2.8 * var(--seat-gap)) / 2);
   /* Height left for the top and bottom rows above and below the table. */
@@ -240,6 +255,17 @@
  * The few things Tailwind cannot express as utilities: the 3D context the
  * card flip needs. Named semantically so the JSX still reads as Tailwind.
  */
+/*
+ * The face numeral scales with the card rather than the viewport. A fixed size
+ * crowded the edges as soon as the ring clamped the card down, and "0,25" — 70px
+ * wide at the old 34px — overflowed a small card outright. PlayingCard sets
+ * --value-scale per label, because four characters need more room than one.
+ */
+@utility card-value {
+  font-size: calc(var(--card-h) * var(--value-scale, 0.26));
+  line-height: 1;
+}
+
 @utility card-scene {
   perspective: 1200px;
 }
