@@ -59,7 +59,8 @@ export function VoteSummary({ participants }: VoteSummaryProps) {
 
         {summary.abstainCount > 0 ? (
           <span className="ml-auto hidden shrink-0 font-mono text-micro text-ink-faint uppercase sm:block">
-            {summary.abstainCount} didn&apos;t vote
+            {summary.abstainCount} {summary.abstainCount === 1 ? 'player' : 'players'} didn&apos;t
+            vote
           </span>
         ) : null}
       </div>
