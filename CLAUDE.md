@@ -42,10 +42,15 @@ client/   features/lobby · features/room · features/identity · features/toast
 e2e/      Playwright specs for what needs two browsers (see Tests below)
 ```
 
-Deployed as a single container to Render's free tier — `Dockerfile`, `render.yaml`, and a
-Deploying section in the README. One instance, and it sleeps when idle: rooms are in memory,
-so a restart empties every table and a second instance would be a second disconnected set of
-rooms. There is no authentication in front of it.
+Deployed as a single container to Render's free tier — `Dockerfile` and `render.yaml`;
+Render rebuilds on every push to `main` and health-checks `/healthz`, which reports the live
+room count. One instance, and it sleeps after 15 idle minutes: rooms are in memory, so a
+restart empties every table and a second instance would be a second disconnected set of
+rooms. Scaling out needs the socket.io Redis adapter and a shared room store first. There is
+no authentication in front of it, and the URL is public in the README.
+
+The server reads `PORT` (default 3001), `NODE_ENV=production` to serve the built client, and
+`CORS_ORIGIN`, needed only when the client is served from another origin.
 
 ## Architecture rules
 

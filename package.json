@@ -2,7 +2,7 @@
   "name": "poker",
   "version": "1.0.0",
   "private": true,
-  "description": "Scrum Poker — lightweight planning poker for a team",
+  "description": "Simple, ad-free planning poker for agile teams",
   "packageManager": "pnpm@10.26.1",
   "type": "module",
   "engines": {
